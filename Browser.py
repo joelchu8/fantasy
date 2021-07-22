@@ -14,4 +14,3 @@ password_box.send_keys(password)
 password_box.submit()
 
 browser.find_element_by_link_text("Transfers").click()
-# login_button = browser.find_element_by_class_name("Login__LoginButtonWrap-sc-1dpiyoc-3 gJIZgq")
