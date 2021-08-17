@@ -12,5 +12,6 @@ password_box = browser.find_element_by_id("loginPassword")
 password_box.send_keys(password)
 
 password_box.submit()
+#browser.find_element_by_link_text("Transfers").click()
 
-browser.find_element_by_link_text("Transfers").click()
+browser.find_element_by_link_text("Pick Team").click()
