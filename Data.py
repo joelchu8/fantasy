@@ -41,12 +41,10 @@ def suggest_transfers():
     transfers = browser.find_elements_by_id("trade")
 
     # gets info from top transfer suggestion
-    value = transfers[0].find_element_by_xpath('//*[@id="trade"]/tr[1]/td').text.split()[0]
+    value = float(transfers[0].find_element_by_xpath('//*[@id="trade"]/tr[1]/td').text.split()[0])
     print(value)
 
-    float_value = float(value)
-    print(float_value)
-
+    # gets the players being traded out and in from the top transfer suggesion
     trades = transfers[0].find_elements_by_class_name("xviPOSROW")
     players_out = []
     players_in = []
@@ -60,5 +58,30 @@ def suggest_transfers():
         print(players_in)
 
 
-suggest_transfers()
+def pick_team():
+    players_to_start = []
 
+    player_elements = browser.find_elements_by_class_name("xviPLAYERAREA")
+
+    for player in player_elements:
+
+        # finds if player captain, vice or starting
+        note = player.find_element_by_xpath('.//span[@class="CellComment selinfo"]').get_attribute("innerHTML")
+        name = player.find_element_by_xpath('.//span[@class="xviNAME"]').get_attribute("innerHTML")
+
+        if note == "Captain":
+            captain = name
+            players_to_start.append(name)
+        elif note == "Vice":
+            vice = name
+            players_to_start.append(name)
+        elif note == "Start":
+            players_to_start.append(name)
+
+    print(players_to_start)
+    print(captain)
+    print(vice)
+
+
+# suggest_transfers()
+pick_team()
