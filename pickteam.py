@@ -65,6 +65,7 @@ password_box.submit()
 
 browser.find_element_by_link_text("Pick Team").click()
 
+# remove players that are already on the bench
 for player in players_to_bench:
     player_element = browser.find_element_by_xpath('//div[text()="' + player + '"]')
 
@@ -76,6 +77,7 @@ for player in players_to_bench:
     except NoSuchElementException:
         players_to_bench.remove(player)
 
+# checks if each player in the list is starting, if not subs them on from the bench
 for player in players_to_start:
     player_element = browser.find_element_by_xpath('//div[text()="' + player + '"]')
 
@@ -84,7 +86,7 @@ for player in players_to_start:
 
     # cannot find ancestor pitch element so player is not starting
     except NoSuchElementException:
-        benched_player = players_to_bench[0]
+        benched_player = players_to_bench.pop()
         player_element.click()
 
         switch_button = browser.find_element_by_xpath('//button[text()="Switch"]')
@@ -96,13 +98,16 @@ for player in players_to_start:
         switch_button = browser.find_element_by_xpath('//button[text()="Switch"]')
         switch_button.click()
 
-        players_to_bench.remove(benched_player)
 
 captain_element = browser.find_element_by_xpath('//div[text()="' + captain + '"]')
 captain_element.click()
+
+# checks if captain_button shows up, which would mean they are not currently captain
 try:
     captain_button = browser.find_element_by_xpath('//button[text()="Make Captain"]')
     captain_button.click()
+
+# closes overlay as player is already captain
 except NoSuchElementException:
     close_button = browser.find_element_by_xpath('//button[@class="Dialog__Button-sc-5bogmv-2 ejzwPB"]')
     close_button.click()

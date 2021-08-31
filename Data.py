@@ -25,6 +25,12 @@ WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.XPATH, close_but
 close_button = browser.find_element_by_xpath(close_button_xpath)
 close_button.click()
 
+#
+# TODO
+# make it so that it picks the transfer with highest data points per trade
+#
+#
+
 
 def suggest_transfers():
     # click transfer suggest button
@@ -83,5 +89,4 @@ def pick_team():
     print(vice)
 
 
-# suggest_transfers()
-pick_team()
+suggest_transfers()
