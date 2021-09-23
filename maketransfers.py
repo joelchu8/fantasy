@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import utility
 
 # starts a browser session
 PATH = r"C:\Users\Joel\Downloads\edgedriver_win64\msedgedriver.exe"
@@ -61,16 +62,8 @@ print(players_out)
 print("players in: ")
 print(players_in)
 
-browser.get('https://fantasy.premierleague.com/')
+utility.login(browser)
 
-login_box = browser.find_element_by_id("loginUsername")
-login_box.send_keys("jcevbqlxcvgaijsyuc@rffff.net")
-
-password = str(input("password: "))
-password_box = browser.find_element_by_id("loginPassword")
-password_box.send_keys(password)
-
-password_box.submit()
 browser.find_element_by_link_text("Transfers").click()
 
 for player in players_out:

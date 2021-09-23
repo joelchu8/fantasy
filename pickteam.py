@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import utility
 
 # starts a browser session
 PATH = r"C:\Users\Joel\Downloads\edgedriver_win64\msedgedriver.exe"
@@ -53,15 +54,7 @@ print(captain)
 print(vice)
 print(players_to_bench)
 
-browser.get('https://fantasy.premierleague.com/')
-
-login_box = browser.find_element_by_id("loginUsername")
-login_box.send_keys("jcevbqlxcvgaijsyuc@rffff.net")
-
-password = str(input("password: "))
-password_box = browser.find_element_by_id("loginPassword")
-password_box.send_keys(password)
-password_box.submit()
+utility.login(browser)
 
 browser.find_element_by_link_text("Pick Team").click()
 
