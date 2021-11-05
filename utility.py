@@ -1,3 +1,12 @@
+from selenium import webdriver
+
+
+def start_browser():
+    PATH = r"C:\Users\Joel\Downloads\edgedriver_win64_95\msedgedriver.exe"
+    browser = webdriver.Edge(PATH)
+    browser.get("https://fplreview.com/free-planner/")
+    return browser
+
 def login(browser):
     browser.get('https://fantasy.premierleague.com/')
 

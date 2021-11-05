@@ -6,9 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import utility
 
 # starts a browser session
-PATH = r"C:\Users\Joel\Downloads\edgedriver_win64\msedgedriver.exe"
-browser = webdriver.Edge(PATH)
-browser.get("https://fplreview.com/free-planner/")
+browser = utility.start_browser()
 
 # selects highest number of gameweeks to forecast
 select_gw = Select(browser.find_element_by_id("Weeks"))
